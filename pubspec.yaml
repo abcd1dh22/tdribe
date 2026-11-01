@@ -1,0 +1,17 @@
+name: telecloud
+description: Telegram-backed personal cloud storage
+publish_to: 'none'
+version: 1.0.0+1
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  dio: ^5.7.0
+  file_picker: ^8.1.2
+  path_provider: ^2.1.4
+  open_filex: ^4.5.0
+  flutter_secure_storage: ^9.2.2
+  crypto: ^3.0.5
+flutter:
+  uses-material-design: true
