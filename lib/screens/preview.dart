@@ -71,15 +71,15 @@ class _PreviewScreenState extends State<PreviewScreen> {
               child: const Icon(Icons.delete_outline_rounded, color: AppColors.danger, size: 28),
             ),
             const SizedBox(height: 14),
-            Text('ফাইলটি মুছবেন?', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700, color: c.tx)),
+            Text('ফাইলটি ট্র্যাশে পাঠাবেন?', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700, color: c.tx)),
             const SizedBox(height: 6),
-            Text('${f.name} চ্যানেল ও তালিকা থেকে মুছে যাবে।',
+            Text('${f.name} ট্র্যাশে যাবে, পরে ফিরিয়ে আনা যাবে।',
                 textAlign: TextAlign.center, style: TextStyle(color: c.muted, fontSize: 14.5)),
             const SizedBox(height: 20),
             Row(children: [
               Expanded(child: FlatBtn(label: 'বাতিল', bg: c.sf2, fg: c.tx, onTap: () => Navigator.pop(c, false))),
               const SizedBox(width: 12),
-              Expanded(child: FlatBtn(label: 'মুছুন', bg: AppColors.danger, fg: Colors.white, onTap: () => Navigator.pop(c, true))),
+              Expanded(child: FlatBtn(label: 'ট্র্যাশে', bg: AppColors.danger, fg: Colors.white, onTap: () => Navigator.pop(c, true))),
             ]),
           ]),
         ),
@@ -89,9 +89,9 @@ class _PreviewScreenState extends State<PreviewScreen> {
     final m = ScaffoldMessenger.of(context);
     final nav = Navigator.of(context);
     setState(() => deleting = true);
-    final clean = await store.removeFile(f);
+    await store.trashFiles([f]);
     nav.pop();
-    toastM(m, clean ? 'ফাইল মুছে ফেলা হয়েছে' : 'তালিকা থেকে মুছেছে; চ্যানেলের মেসেজ মোছা যায়নি', error: !clean);
+    toastM(m, 'ট্র্যাশে পাঠানো হয়েছে');
   }
 
   Widget _art(BuildContext c) {
